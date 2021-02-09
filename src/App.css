@@ -92,12 +92,12 @@ body {
 }
 
 .para-grp {
-  /* width: 100%; */
+  width: 100%;
 }
 
 .para-subgrp {
   display: inline;
-  width: 90%;
+  width: 100%;
 }
 
 .input-para {
@@ -137,6 +137,7 @@ body {
 #btn-add {
   position: relative;
   right: 3.5em;
+  margin: 0 0.5em;
   font-size: 1em;
   font-weight: bold;
   border-radius: 50%;
@@ -144,7 +145,6 @@ body {
 }
 
 .add-row {
-  margin-left: 0.1em;
   color: #000;
   border-color: #000;
 }
