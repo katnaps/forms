@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Forms from './Forms';
 import ModalContext from "../contexts/ModalContext";
 
 export default ({ child }) => {
+
     const [modalState, setModalState] = useState(false);
 
     // handles click event to open up modal form
@@ -15,6 +16,7 @@ export default ({ child }) => {
     const closeModalState = () => {
         document.body.style.backgroundColor = '#fff';
         setModalState(false);
+        window.location.reload(false);
     }
 
 

@@ -46,7 +46,7 @@ export default ({ children }) => {
 
                 {ruleList.map((x, idx) => {
                     return (
-                        <StateContext.Provider value={{ ruleList, handleAddRuleSet, handleRemoveRuleSet, idx }}>
+                        <StateContext.Provider value={{ ruleList, handleAddRuleSet, handleRemoveRuleSet, idx, setRuleList }}>
                             <div key={idx}>
                                 <DropRow />
                             </div>
