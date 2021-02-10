@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import DropRow from './DropRow';
-import RowContext from '../contexts/RowContext';
+import StateContext from '../contexts/StateContext';
+import ModalContext from '../contexts/ModalContext';
 
 export default ({ children }) => {
+    const { closeModalState } = useContext(ModalContext);
+
     const [condition, setCondtions] = useState(['ALL', 'option1', 'option2', 'option3']);
     const [ruleList, setRuleList] = useState([{}]);
 
@@ -43,12 +46,12 @@ export default ({ children }) => {
 
                 {ruleList.map((x, idx) => {
                     return (
-                        <RowContext.Provider value={{ ruleList, handleAddRuleSet, handleRemoveRuleSet, idx }}>
+                        <StateContext.Provider value={{ ruleList, handleAddRuleSet, handleRemoveRuleSet, idx }}>
                             <div key={idx}>
                                 <DropRow />
                             </div>
                             {children}
-                        </RowContext.Provider>
+                        </StateContext.Provider>
                     )
                 })}
                 <div className="rev-row">
@@ -59,7 +62,7 @@ export default ({ children }) => {
 
                 <div className="action-btn">
                     <button id="confirm">Confirm</button>
-                    <button id="cancel">Cancel</button>
+                    <button id="cancel" onClick={closeModalState}>Cancel</button>
                 </div>
 
             </div>

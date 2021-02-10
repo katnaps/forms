@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import RowContext from '../contexts/RowContext';
+import StateContext from '../contexts/StateContext';
 
 
 export default () => {
-    const{ ruleList, handleAddRuleSet, handleRemoveRuleSet, idx } = useContext(RowContext);
+    const{ ruleList, handleAddRuleSet, handleRemoveRuleSet, idx } = useContext(StateContext);
 
     const [rowList, setRowList] = useState([{ para: "" }]);
     const [isSelectOpt1, setSelectOpt1] = useState(['aff_sub', 'aff_sub1', 'aff_sub2']);

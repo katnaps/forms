@@ -4,7 +4,42 @@
 
 body {
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-btn {
+  height: 100vh;
+}
+
+.modal-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, -55%);
+
+  border-radius: 5px;
+  border: 0;
+
+  height: 10vh;
+  width: 15vh;
+
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+
+  background-color: #abcbff;
+
+  transition: background-color 0.2s ease-out;
+}
+
+.modal-btn:focus {
+  outline: 0;
+  background-color: #24ff6d;
 }
 
 .modal-container-close{
@@ -23,10 +58,6 @@ body {
   background-color: #fff;
   position: absolute;
   top: 10vh;
-}
-
-.modal-subcontent {
-  /* margin: 0 2em; */
 }
 
 .title-row {
@@ -59,7 +90,6 @@ body {
   width: 15%;
   border-radius: 5px;
   border: 1px solid rgb(88, 88, 88);
-  margin: 0 0.5em;
 }
 
 /* DropRow */
@@ -256,4 +286,154 @@ select {
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+
+/* Web Responsive */
+
+@media screen and (max-width: 1440px) {
+  .modal-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -55%);
+  
+    border-radius: 5px;
+    border: 0;
+  
+    height: 20vh;
+    width: 25vh;
+  
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+  
+    background-color: #abcbff;
+  
+    transition: background-color 0.2s ease-out;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .input-para {
+    width: 75%;
+  }
+
+  .drop-grp-menu {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .input-para {
+    width: 65%;
+  }
+
+}
+
+
+@media screen and (max-width: 425px) {
+
+
+  .modal-content {
+    width: 100vmin;
+    top: 0;
+  }
+
+  .title-row {
+    margin: 0 3.5em 0 1.5em;
+  }
+
+  .upper-row {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 3.5em 1em 1.5em;
+  }
+
+  .drop-menu {
+    width: 100%;
+  }
+
+  .upper-row .drop-menu {
+    margin: 0;
+  }
+
+  .row-content {
+    flex-direction: column;
+    width: auto;
+  }
+  
+  .drop-grp {
+    width: auto;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 1.5em 0 0;
+    
+  }
+
+  .drop-grp-menu {
+    width: 100%;
+    margin: 0.5em 0;
+  }
+
+  .para-grp {
+    width: auto;
+  }
+
+  .para-subgrp {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-para {
+    width: auto;
+    margin: 0 1.5em 0 0;
+  }
+
+  .btn-rule {
+    position: relative;
+    left: 8em;
+    bottom: 2.2em;
+  }
+
+  #btn-add {
+    position: relative;
+    left: 16em;
+  }
+}
+
+
+@media screen and (max-width: 375px) {
+  .rev-row {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 1.5em 0.5em 1.5em;
+  }
+
+  .btn-rule {
+    position: relative;
+    left: 6em;
+    bottom: 2.2em;
+  }
+
+  #btn-add {
+    position: relative;
+    left: 12.5em;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  
+  .btn-rule {
+    position: relative;
+    left: 4em;
+    bottom: 2.2em;
+  }
+
+  #btn-add {
+    position: relative;
+    left: 10em;
+  }
 }
