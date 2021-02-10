@@ -3,6 +3,15 @@ import FormContext from '../contexts/FormContext';
 
 
 export default () => {
+    const [rowList, setRowList] =useState([{ para: ''}])
+
+    // handle parameter input row changes
+    const handleInput = (e, index) => {
+        const { args, value } = e.target;
+        const list = [...rowList];
+        list[index][args] = value;
+        setRowList(list);
+    }
 
 
     const addBtn = () => {
@@ -19,6 +28,7 @@ export default () => {
 
     return (
         <div className="row">
+                <h4 className="rule-title">Rule 1</h4>
             <div className="row-content">
                 <div className="drop-grp">
                     <select className="drop-grp-menu">
@@ -35,7 +45,7 @@ export default () => {
 
                 <div className="para-grp">
                     <div className="para-subgrp">
-                        <input type="text" className="input-para" placeholder=" insert parameter" />
+                        <input type="text" value="para" className="input-para" placeholder=" insert parameter" />
                         <button className="rm-rule btn-rule">remove rule</button>
                         <input type="text" className="input-para" placeholder=" insert parameter" />
                         <button className="add-rule btn-rule">add rule</button>
