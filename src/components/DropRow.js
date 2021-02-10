@@ -1,59 +1,115 @@
-import React, { useState } from 'react';
-import FormContext from '../contexts/FormContext';
+import React, { useState, useContext } from 'react';
+import RowContext from '../contexts/RowContext';
 
 
 export default () => {
-    const [rowList, setRowList] =useState([{ para: ''}])
+    const{ ruleList, handleAddRuleSet, handleRemoveRuleSet, idx } = useContext(RowContext);
+
+    const [rowList, setRowList] = useState([{ para: "" }]);
+    const [isSelectOpt1, setSelectOpt1] = useState(['aff_sub', 'aff_sub1', 'aff_sub2']);
+    const [isSelectOpt2, setSelectOpt2] = useState(['is', 'less', 'more']);
+
+    const selectOpt1 = isSelectOpt1.map(selectOpt1 => selectOpt1);
+    const selectOpt2 = isSelectOpt2.map(selectOpt2 => selectOpt2);
+
 
     // handle parameter input row changes
-    const handleInput = (e, index) => {
-        const { args, value } = e.target;
+    const handleInputPara = (e, index) => {
+        const { name, value } = e.target;
         const list = [...rowList];
-        list[index][args] = value;
+        list[index][name] = value;
         setRowList(list);
-    }
+    };
 
+    // hancle click event of remove rule
+    const handleRemoveRule = index => {
+        const list = [...rowList];
+        list.splice(index, 1);
+        setRowList(list);
+    };
 
-    const addBtn = () => {
-        return (
-            <button className="add-row" id="btn-add">+</button>
-        )
-    }
+    // handle click event of add rule
+    const handleAddRule = () => {
+        setRowList([...rowList, { para: "" }]);
+    };
 
-    const rmBtn = () => {
-        return (
-            <button className="rm-row" id="btn-add">-</button>
-        )
-    }
 
     return (
         <div className="row">
-                <h4 className="rule-title">Rule 1</h4>
+
+            <h4 className="rule-title">Rule {idx + 1}</h4>
+
             <div className="row-content">
                 <div className="drop-grp">
                     <select className="drop-grp-menu">
-                        <option>aff_sub</option>
-                        <option>aff_sub1</option>
-                        <option>aff_sub2</option>
+                        {
+                            selectOpt1.map((type1, key) => <option key={key} value={key}>{type1}</option>)
+                        }
                     </select>
-                    <select className="drop-grp-menu">
-                        <option>is</option>
-                        <option>less</option>
-                        <option>more</option>
+                    <select name="subOpt2" className="drop-grp-menu">
+                        {
+                            selectOpt2.map((type2, key) => <option key={key} value={key}>{type2}</option>)
+                        }
                     </select>
                 </div>
 
                 <div className="para-grp">
-                    <div className="para-subgrp">
-                        <input type="text" value="para" className="input-para" placeholder=" insert parameter" />
-                        <button className="rm-rule btn-rule">remove rule</button>
-                        <input type="text" className="input-para" placeholder=" insert parameter" />
-                        <button className="add-rule btn-rule">add rule</button>
-                        {rmBtn()}
-                        {addBtn()}
-                    </div>
+                    {rowList.map((y, idx2) => {
+                        return (
+                            <div key={idx2} className="para-subgrp">
+                                <input
+                                    name="para"
+                                    className="input-para"
+                                    type="text"
+                                    value={y.para}
+                                    placeholder=" insert parameter"
+                                    onChange={e => handleInputPara(e, idx2)}
+                                />
+                                {rowList.length !== 1 && rowList.length - 1 !== idx2 &&
+                                    <button
+                                        className="rm-rule btn-rule"
+                                        onClick={() => handleRemoveRule(idx2)}
+                                    >
+                                        remove rule
+                                    </button>
+                                }
+                                {
+                                    rowList.length - 1 === idx2 &&
+                                    <button
+                                        className="add-rule btn-rule"
+                                        onClick={handleAddRule}
+                                    >
+                                        add rule
+                                    </button>
+                                }
+                            </div>
+                        );
+                    })}
+
+                    {
+                        ruleList.length !== 1 &&
+                        <button
+                            className="rm-row"
+                            id="btn-add"
+                            onClick={() => handleRemoveRuleSet(idx)}>
+                            -
+                                </button>
+                    }
+                    {
+                        ruleList.length - 1 === idx &&
+                        <button
+                            className="add-row"
+                            id="btn-add"
+                            onClick={handleAddRuleSet}>
+                            +
+                                </button>
+                    }
+
                 </div>
+
             </div>
+
         </div>
+
     )
 }

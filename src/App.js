@@ -3,11 +3,11 @@ import Modal from './components/Modal';
 import './App.css';
 
 function App() {
-  return (
-    <Modal>
-      
-    </Modal>
+  return (  
+      <Modal />
   );
 }
 
 export default App;
+
+
